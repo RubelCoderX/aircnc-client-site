@@ -1,6 +1,8 @@
 import React from "react";
 import Container from "../Container/Container";
 import Logo from "./Logo";
+import Search from "./Search";
+import MenuDropDown from "./MenuDropDown";
 
 const Navbar = () => {
   return (
@@ -11,8 +13,12 @@ const Navbar = () => {
             <div>
               <Logo></Logo>
             </div>
-            <div>search</div>
-            <div>menu</div>
+            <div>
+              <Search></Search>
+            </div>
+            <div>
+              <MenuDropDown></MenuDropDown>
+            </div>
           </div>
         </Container>
       </div>
