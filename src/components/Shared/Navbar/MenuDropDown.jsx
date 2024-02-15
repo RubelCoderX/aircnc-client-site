@@ -3,13 +3,17 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Avater from "./Avater";
 
 const MenuDropDown = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
+  const signOut = () => {
+    logOut().then().catch();
+  };
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
@@ -22,7 +26,7 @@ const MenuDropDown = () => {
         >
           <AiOutlineMenu></AiOutlineMenu>
           <div className="hidden md:block">
-            <FaRegUser></FaRegUser>
+            <Avater></Avater>
           </div>
         </div>
       </div>
@@ -37,7 +41,7 @@ const MenuDropDown = () => {
             </Link>
             {user ? (
               <div
-                onClick={logOut}
+                onClick={signOut}
                 className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
               >
                 LogOut
