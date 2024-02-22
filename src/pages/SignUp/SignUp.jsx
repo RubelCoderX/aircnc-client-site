@@ -6,6 +6,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { TbFidgetSpinner } from "react-icons/tb";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { saveUser } from "../../api/auth";
 
 const SignUp = () => {
   const { loading, updateUserProfile, setLoading, createUser, googleSignIn } =
@@ -47,6 +48,7 @@ const SignUp = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
+                saveUser(loggedUser);
                 navigate(from, { replace: true });
               })
               .catch((error) => {
@@ -72,7 +74,8 @@ const SignUp = () => {
     googleSignIn()
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
+        saveUser(loggedUser);
         navigate(from, { replace: true });
       })
       .catch((error) => {
