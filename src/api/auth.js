@@ -28,3 +28,13 @@ export const becomeHost = (email) => {
     body: JSON.stringify(currentUser),
   }).then((res) => res.json());
 };
+
+// get role
+export const getRole = async (email) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/users/${email}`
+  );
+
+  const user = await response.json();
+  return user?.role;
+};

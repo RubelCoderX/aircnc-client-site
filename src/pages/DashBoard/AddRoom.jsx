@@ -3,9 +3,12 @@ import AddRoomForm from "../../components/Dashboard/Forms/AddRoomForm";
 import { imageUpload } from "../../api/imageUpload";
 import { AuthContext } from "../../provider/AuthProvider";
 import { addRoom } from "../../api/room";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddRoom = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [uploadButtonText, setUploadButtonText] = useState("Upload Image");
   const [dates, setDates] = useState({
@@ -55,7 +58,10 @@ const AddRoom = () => {
         addRoom(roomData)
           .then((data) => {
             console.log(data);
-            alert("Room is added to the database");
+            setUploadButtonText("Uploaded");
+            setLoading(false);
+            toast.success("Room is added to the database");
+            navigate("/dashboard/my-listings");
           })
           .catch((error) => {
             console.log(error.message);
